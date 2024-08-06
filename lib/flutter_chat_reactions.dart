@@ -66,12 +66,12 @@ class _ReactionsDialogWidgetState extends State<ReactionsDialogWidget> {
               // message
               buildMessage(),
               const SizedBox(
-                height: 10,
+                height: 5,
               ),
               // reactions
               buildReactions(context),
               const SizedBox(
-                height: 10,
+                height: 15,
               ),
               // context menu
               buildMenuItems(context),
@@ -93,14 +93,7 @@ class _ReactionsDialogWidgetState extends State<ReactionsDialogWidget> {
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.background,
             borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade500,
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: const Offset(0, 1), // changes position of shadow
-              ),
-            ],
+
           ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -120,7 +113,7 @@ class _ReactionsDialogWidgetState extends State<ReactionsDialogWidget> {
                           });
 
                           // delay for 200 milliseconds to allow the animation to complete
-                          Future.delayed(const Duration(milliseconds: 500))
+                          Future.delayed(const Duration(milliseconds: 150))
                               .whenComplete(() {
                             // pop the dialog
                             Navigator.of(context).pop();
@@ -143,7 +136,7 @@ class _ReactionsDialogWidgetState extends State<ReactionsDialogWidget> {
                             ),
                             Pulse(
                               infinite: false,
-                              duration: const Duration(milliseconds: 500),
+                              duration: const Duration(milliseconds: 150),
                               animate: clickedContextMenuIndex ==
                                   widget.menuItems.indexOf(item),
                               child: Icon(
@@ -194,14 +187,6 @@ class _ReactionsDialogWidgetState extends State<ReactionsDialogWidget> {
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.background,
             borderRadius: BorderRadius.circular(20),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.shade500,
-                spreadRadius: 1,
-                blurRadius: 2,
-                offset: const Offset(0, 1), // changes position of shadow
-              ),
-            ],
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -215,7 +200,7 @@ class _ReactionsDialogWidgetState extends State<ReactionsDialogWidget> {
                             widget.reactions.indexOf(reaction);
                       });
                       // delay for 200 milliseconds to allow the animation to complete
-                      Future.delayed(const Duration(milliseconds: 250))
+                      Future.delayed(const Duration(milliseconds: 150))
                           .whenComplete(() {
                         // pop the dialog
                         Navigator.of(context).pop();
@@ -224,7 +209,7 @@ class _ReactionsDialogWidgetState extends State<ReactionsDialogWidget> {
                     },
                     child: Pulse(
                       infinite: false,
-                      duration: const Duration(milliseconds: 500),
+                      duration: const Duration(milliseconds: 150),
                       animate: reactionClicked &&
                           clickedReactionIndex ==
                               widget.reactions.indexOf(reaction),

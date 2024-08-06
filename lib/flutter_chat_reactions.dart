@@ -63,13 +63,13 @@ class _ReactionsDialogWidgetState extends State<ReactionsDialogWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              // reactions
-              buildReactions(context),
+              // message
+              buildMessage(),
               const SizedBox(
                 height: 10,
               ),
-              // message
-              buildMessage(),
+              // reactions
+              buildReactions(context),
               const SizedBox(
                 height: 10,
               ),
@@ -207,41 +207,35 @@ class _ReactionsDialogWidgetState extends State<ReactionsDialogWidget> {
             mainAxisSize: MainAxisSize.min,
             children: [
               for (var reaction in widget.reactions)
-                FadeInLeft(
-                  from: // first index should be from 0, second from 20, third from 40 and so on
-                      0 + (widget.reactions.indexOf(reaction) * 20).toDouble(),
-                  duration: const Duration(milliseconds: 500),
-                  delay: const Duration(milliseconds: 200),
-                  child: InkWell(
-                      onTap: () {
-                        setState(() {
-                          reactionClicked = true;
-                          clickedReactionIndex =
-                              widget.reactions.indexOf(reaction);
-                        });
-                        // delay for 200 milliseconds to allow the animation to complete
-                        Future.delayed(const Duration(milliseconds: 500))
-                            .whenComplete(() {
-                          // pop the dialog
-                          Navigator.of(context).pop();
-                          widget.onReactionTap(reaction);
-                        });
-                      },
-                      child: Pulse(
-                        infinite: false,
-                        duration: const Duration(milliseconds: 500),
-                        animate: reactionClicked &&
-                            clickedReactionIndex ==
-                                widget.reactions.indexOf(reaction),
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(4.0, 2.0, 4.0, 2),
-                          child: Text(
-                            reaction,
-                            style: const TextStyle(fontSize: 22),
-                          ),
+                InkWell(
+                    onTap: () {
+                      setState(() {
+                        reactionClicked = true;
+                        clickedReactionIndex =
+                            widget.reactions.indexOf(reaction);
+                      });
+                      // delay for 200 milliseconds to allow the animation to complete
+                      Future.delayed(const Duration(milliseconds: 250))
+                          .whenComplete(() {
+                        // pop the dialog
+                        Navigator.of(context).pop();
+                        widget.onReactionTap(reaction);
+                      });
+                    },
+                    child: Pulse(
+                      infinite: false,
+                      duration: const Duration(milliseconds: 500),
+                      animate: reactionClicked &&
+                          clickedReactionIndex ==
+                              widget.reactions.indexOf(reaction),
+                      child: Padding(
+                        padding: const EdgeInsets.fromLTRB(4.0, 2.0, 4.0, 2),
+                        child: Text(
+                          reaction,
+                          style: const TextStyle(fontSize: 22),
                         ),
-                      )),
-                ),
+                      ),
+                    ))
             ],
           ),
         ),
